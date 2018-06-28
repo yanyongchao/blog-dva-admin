@@ -9,7 +9,7 @@ export const notLayoutRouterMap = app => [
   },
   {
     path: '/404',
-    name: 'Not Found',
+    name: 'NotFound',
     exact: true,
     component: asyncComponent(app, [], () => import('@/pages/error/404'))
   }
@@ -20,12 +20,14 @@ export const layoutRouterMap = app => [
     path: '/home',
     name: '主页',
     exact: true,
+    auth: true,
     component: asyncComponent(app, [], () => import('@/pages/home'))
   },
   {
     path: '/user',
     name: '用户管理',
     exact: true,
+    auth: true,
     component: asyncComponent(app, [], () => import('@/pages/user'))
   }
 ]

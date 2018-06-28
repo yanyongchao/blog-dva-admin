@@ -14,7 +14,7 @@ const app = dva({
 app.use(createLoading())
 
 // 3. Model
-// app.model(require('./models/example').default);
+app.model(require('./models/user').default)
 
 // 4. Router
 app.router(require('./router').default)
@@ -22,6 +22,8 @@ app.router(require('./router').default)
 // 5. Start
 app.start('#root')
 
+app._store.dispatch({ type: 'user/checkAccess' })
+
 window.store = app._store
 
-export default app._store; // eslint-disable-line
+export default app._store // eslint-disable-line

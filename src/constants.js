@@ -1,0 +1,1 @@
+export const DVA_ADMIN_BLOG = 'dva.admin.blog'
