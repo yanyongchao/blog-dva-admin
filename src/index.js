@@ -22,6 +22,7 @@ app.router(require('./router').default)
 // 5. Start
 app.start('#root')
 
+// 检查token是否过期
 app._store.dispatch({ type: 'user/checkAccess' })
 
 window.store = app._store

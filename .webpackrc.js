@@ -14,6 +14,9 @@ export default {
       pathRewrite: { '^/api': '' }
     }
   },
+  html: {
+    template: './src/index.ejs',
+  },
   // 禁用css module
   disableCSSModules: true,
   publicPath: '/'

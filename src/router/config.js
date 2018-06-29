@@ -9,7 +9,7 @@ export const notLayoutRouterMap = app => [
   },
   {
     path: '/404',
-    name: 'NotFound',
+    name: '404',
     exact: true,
     component: asyncComponent(app, [], () => import('@/pages/error/404'))
   }
@@ -17,17 +17,31 @@ export const notLayoutRouterMap = app => [
 
 export const layoutRouterMap = app => [
   {
-    path: '/home',
-    name: '主页',
+    path: '/article/list',
+    name: '文章列表',
     exact: true,
     auth: true,
-    component: asyncComponent(app, [], () => import('@/pages/home'))
+    component: asyncComponent(app, [], () => import('@/pages/article/list'))
   },
   {
-    path: '/user',
-    name: '用户管理',
+    path: '/article/add',
+    name: '添加文章',
     exact: true,
     auth: true,
-    component: asyncComponent(app, [], () => import('@/pages/user'))
+    component: asyncComponent(app, [], () => import('@/pages/article/add'))
+  },
+  {
+    path: '/category/all',
+    name: '全部标签',
+    exact: true,
+    auth: true,
+    component: asyncComponent(app, [], () => import('@/pages/category/all'))
+  },
+  {
+    path: '/category/add',
+    name: '新建标签',
+    exact: true,
+    auth: true,
+    component: asyncComponent(app, [], () => import('@/pages/category/add'))
   }
 ]

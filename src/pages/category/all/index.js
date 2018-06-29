@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-export default class Home extends Component {
+export default class CategoryAll extends Component {
   render () {
     console.log(this.props)
     return (
-      <div className="m-home">
-        home
+      <div className="m-category-all">
+        m-category-all
       </div>
     )
   }

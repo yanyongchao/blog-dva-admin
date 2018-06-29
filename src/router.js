@@ -30,7 +30,7 @@ function RouterConfig({ history, app }) {
           <Layout>
             <Switch>
               {renderRouteComponent(layoutRouter)}
-              <Route path="/" exact render={() => <Redirect to="/home" />} />
+              <Route path="/" exact render={() => <Redirect to="/article/list" />} />
               <Route render={() => <Redirect to="/404" />} />
             </Switch>
           </Layout>
