@@ -19,6 +19,11 @@ class AuthRoute extends Component {
 
 export default connect(state => state.user)(withRouter(AuthRoute))
 
+/**
+ * 无效代码
+ * 采坑用的
+ */
+
 // import React, { Component } from 'react'
 // import { withRouter, Redirect, Route } from 'dva/router'
 // import { access } from '../services/api'

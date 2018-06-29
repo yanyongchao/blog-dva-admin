@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
+import { withRouter } from 'dva/router'
 import './index.less'
 import menu from '../../menu'
 
 const SubMenu = Menu.SubMenu
 
 class Sider extends React.Component {
-  // submenu keys of first level
-  rootSubmenuKeys = menu.map(_ => _.path)
-  state = {
-    openKeys: ['article']
+  constructor(props) {
+    super(props)
+    const arr = props.location.pathname.split('/')
+    this.defaultOpenKeys = [arr[1]]
+    this.defaultSelectedKeys = [props.location.pathname]
+    this.rootSubmenuKeys = menu.map(_ => _.path)
+    this.state = {
+      openKeys: [this.rootSubmenuKeys[0]]
+    }
   }
   onOpenChange = openKeys => {
     const latestOpenKey = openKeys.find(
@@ -23,8 +29,8 @@ class Sider extends React.Component {
       })
     }
   }
-  onMenuSelect = (tem, key, keyPath) => {
-    console.log(tem, key, keyPath)
+  onMenuSelect = tem => {
+    this.props.history.push(`${tem.key}`)
   }
   render() {
     return (
@@ -34,8 +40,8 @@ class Sider extends React.Component {
         onOpenChange={this.onOpenChange}
         onClick={this.onMenuSelect}
         style={{ width: 200 }}
-        defaultOpenKeys={['sub2']}
-        defaultSelectedKeys={['5']}
+        defaultOpenKeys={this.defaultOpenKeys}
+        defaultSelectedKeys={this.defaultSelectedKeys}
       >
         {menu.map(item => {
           if (item.children) {
@@ -50,13 +56,17 @@ class Sider extends React.Component {
                 }
               >
                 {item.children.map(i => {
-                  return <Menu.Item key={i.path}>{i.name}</Menu.Item>
+                  return (
+                    <Menu.Item key={`/${item.path}/${i.path}`}>
+                      {i.name}
+                    </Menu.Item>
+                  )
                 })}
               </SubMenu>
             )
           }
           return (
-            <Menu.Item key={item.path}>
+            <Menu.Item key={`/${item.path}`}>
               <Icon type={item.icon} />
               <span>{item.name}</span>
             </Menu.Item>
@@ -67,15 +77,17 @@ class Sider extends React.Component {
   }
 }
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   render() {
     return (
       <div className="m-navbar">
         <div className="avatar">
           <img src={require('../../assets/images/avatar.jpg')} alt="" />
         </div>
-        <Sider />
+        <Sider {...this.props} />
       </div>
     )
   }
 }
+
+export default withRouter(Navbar)

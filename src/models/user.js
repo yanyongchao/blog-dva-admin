@@ -25,7 +25,7 @@ export default {
         type: 'setUserInfo',
         payload: { jwt: token }
       })
-      yield put(routerRedux.push('/home'))
+      yield put(routerRedux.push('/article/list'))
     },
     *checkAccess({ payload }, { call }) {
       yield call(access)
@@ -36,7 +36,7 @@ export default {
     setUserInfo(state, action) {
       return { ...state, ...action.payload }
     },
-    logout(state, action) {
+    logout(state) {
       localStorage.setItem(DVA_ADMIN_BLOG, '')
       return { ...state, jwt: '' }
     }
