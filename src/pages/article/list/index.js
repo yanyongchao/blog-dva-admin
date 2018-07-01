@@ -13,6 +13,12 @@ class ArticleList extends Component {
   }
 
   articleEdit = (data) => {
+    this.props.dispatch({
+      type: 'article/fetchOne',
+      payload: {
+        id: data._id
+      }
+    })
     this.props.history.push(`/article/${data._id}/edit`)
   }
 

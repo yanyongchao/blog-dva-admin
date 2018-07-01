@@ -28,14 +28,14 @@ export const layoutRouterMap = app => [
     name: '添加文章',
     exact: true,
     auth: true,
-    component: asyncComponent(app, [], () => import('@/pages/article/add'))
+    component: asyncComponent(app, ['article'], () => import('@/pages/article/edit'))
   },
   {
     path: '/article/:id/edit',
     name: '编辑文章',
     exact: true,
     auth: true,
-    component: asyncComponent(app, [], () => import('@/pages/article/edit'))
+    component: asyncComponent(app, ['article'], () => import('@/pages/article/edit'))
   },
   {
     path: '/classification/all',
@@ -52,13 +52,6 @@ export const layoutRouterMap = app => [
     component: asyncComponent(app, [], () => import('@/pages/classification/add'))
   },
   {
-    path: '/classification/:id/edit',
-    name: '编辑分类',
-    exact: true,
-    auth: true,
-    component: asyncComponent(app, [], () => import('@/pages/classification/edit'))
-  },
-  {
     path: '/category/all',
     name: '全部标签',
     exact: true,
@@ -71,13 +64,6 @@ export const layoutRouterMap = app => [
     exact: true,
     auth: true,
     component: asyncComponent(app, [], () => import('@/pages/category/add'))
-  },
-  {
-    path: '/category/:id/edit',
-    name: '编辑标签',
-    exact: true,
-    auth: true,
-    component: asyncComponent(app, [], () => import('@/pages/category/edit'))
   },
   {
     path: '/user',

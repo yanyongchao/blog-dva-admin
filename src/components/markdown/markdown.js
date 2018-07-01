@@ -21,6 +21,7 @@ export class MarkDownEditor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      content: '',
       isFullScreen: false, //是否全屏
       mode: 'split', //模式（分屏、预览、编辑）
       helpModalHidden: true, //是否隐藏帮助模态框
@@ -33,6 +34,7 @@ export class MarkDownEditor extends React.Component {
     let that = this
     this.textControl = this.refs.editor
     this.previewControl = this.refs.preview
+    // this.setState({ content: this.props.content })
 
     //滚动跟随
     this.textControl.onscroll = function(e) {
@@ -92,6 +94,10 @@ export class MarkDownEditor extends React.Component {
       }
     }
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ content: nextProps.content })
+    this.setState({ result: marked(nextProps.content) })
+  }
   componentDidUpdate() {
     let that = this
     setTimeout(function() {
@@ -126,6 +132,7 @@ export class MarkDownEditor extends React.Component {
     let that = this
     let value = e.target.value
     content = value
+    that.setState({ content: value })
     this.interval = setTimeout(function() {
       that.setState({ result: marked(value) })
     }, 300)
@@ -343,7 +350,7 @@ export class MarkDownEditor extends React.Component {
             <textarea
               ref="editor"
               name="content"
-              defaultValue={this.props.content}
+              value={this.state.content}
               onChange={e => {
                 this._onChange(e)
               }}

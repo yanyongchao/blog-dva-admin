@@ -9,12 +9,6 @@ export default {
     jwt: localStorage.getItem(DVA_ADMIN_BLOG)
   },
 
-  subscriptions: {
-    setup({ dispatch, history }) {
-      // eslint-disable-line
-    }
-  },
-
   effects: {
     *login({ payload }, { call, put }) {
       // eslint-disable-line
@@ -22,20 +16,25 @@ export default {
       let { token } = response.data
       localStorage.setItem(DVA_ADMIN_BLOG, token)
       yield put({
-        type: 'setUserInfo',
+        type: 'save',
         payload: { jwt: token }
       })
       yield put(routerRedux.push('/article/list'))
+    },
+    *logout ({ payload }, { call, put }) {
+      yield put({
+        type: 'save',
+        payload: {
+          jwt: ''
+        }
+      })
+      yield put(routerRedux.push('/login'))
     }
   },
 
   reducers: {
-    setUserInfo(state, action) {
+    save(state, action) {
       return { ...state, ...action.payload }
-    },
-    logout(state) {
-      localStorage.setItem(DVA_ADMIN_BLOG, '')
-      return { ...state, jwt: '' }
     }
   }
 }

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Menu, Dropdown } from 'antd'
+import { connect } from 'dva'
 import './index.less'
 
-export default class Header extends Component {
+class Header extends Component {
 
   handleClick = () => {
-    console.log(123)
+    this.props.dispatch({
+      type: 'user/logout'
+    })
   }
 
   render() {
@@ -27,3 +30,5 @@ export default class Header extends Component {
     )
   }
 }
+
+export default connect()(Header)
