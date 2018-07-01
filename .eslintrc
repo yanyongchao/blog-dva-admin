@@ -1,3 +1,7 @@
 {
-  "extends": "umi"
+  "extends": "umi",
+  "rules": {
+    "jsx-a11y/anchor-has-content": 0,
+    "eslint no-caller": 0
+  }
 }

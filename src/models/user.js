@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router'
-import { signIn, access } from '@/services/api'
+import { signIn } from '@/services/api'
 import { DVA_ADMIN_BLOG } from '../constants'
 
 export default {
@@ -26,9 +26,6 @@ export default {
         payload: { jwt: token }
       })
       yield put(routerRedux.push('/article/list'))
-    },
-    *checkAccess({ payload }, { call }) {
-      yield call(access)
     }
   },
 
